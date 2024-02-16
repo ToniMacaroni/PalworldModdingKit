@@ -48,6 +48,7 @@ private:
     
 public:
     UPalTimeManager();
+
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void Tick_BP(float DeltaTime);
@@ -67,6 +68,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float GetDayTimePassRate();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    int32 GetCurrentPalWorldTime_TotalDay() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetCurrentPalWorldTime_Second() const;
@@ -95,7 +99,7 @@ public:
     UFUNCTION(BlueprintCallable)
     void AddSleepPlayer(APalPlayerCharacter* Player);
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

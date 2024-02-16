@@ -186,6 +186,9 @@ private:
     FFlagContainer StepDisableFlag;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FFlagContainer NavWalkDisableFlag;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<EPalWalkableFloorAnglePriority, float> WalkableFloorAngleOverridesMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -245,9 +248,10 @@ private:
     bool bIsDashSwim;
     
 public:
-    UPalCharacterMovementComponent();
+    UPalCharacterMovementComponent(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void SetYawRotatorMultiplier(FName flagName, float Rate);
     
@@ -280,6 +284,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void SetPysicsAccelerationFlag(FName flagName, bool isEnable);
+    
+    UFUNCTION(BlueprintCallable)
+    void SetNavWalkDisableFlag(FName flagName, bool isDisable);
     
     UFUNCTION(BlueprintCallable)
     void SetMoveDisableFlag(FName flagName, bool isDisable);
@@ -379,6 +386,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsPysicsAcceleration() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool IsNavWalkDisabled() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool IsMoveDisabled() const;

@@ -19,6 +19,6 @@ private:
     FFlagContainer HiddenBackWeapon;
     
 public:
-    APalBackWeaponBase();
+    APalBackWeaponBase(const FObjectInitializer& ObjectInitializer);
 };
 

@@ -1,7 +1,8 @@
 #include "PalBackWeaponBase.h"
 
-APalBackWeaponBase::APalBackWeaponBase() {
+APalBackWeaponBase::APalBackWeaponBase(const FObjectInitializer& ObjectInitializer) {
     this->InFirstOrSecondSlot = false;
     this->IsEquipHand = false;
 }
+
 

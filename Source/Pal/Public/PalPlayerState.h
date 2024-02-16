@@ -16,6 +16,7 @@
 #include "PalGuildPlayerInfo.h"
 #include "PalInstanceID.h"
 #include "PalLogInfo_DropPal.h"
+#include "PalMealLogDisplayData.h"
 #include "PalPlayerAccountInitData.h"
 #include "PalPlayerDataCharacterMakeInfo.h"
 #include "PalPlayerInfoForMap.h"
@@ -137,6 +138,9 @@ protected:
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UPalIndividualCharacterHandle* TryCreateIndividualHandleTemporarily;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGuid LoginTryingPlayerUId_InServer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -158,9 +162,10 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     int32 ChatCounter;
     
-    APalPlayerState();
+    APalPlayerState(const FObjectInitializer& ObjectInitializer);
+
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-    
+
     UFUNCTION(BlueprintCallable)
     void WaitWorldPartitionDelegate(FTimerHandle& OutTimerHandle, APalPlayerState::FOnCompleteLoadWorldPartitionDelegate Delegate);
     
@@ -457,6 +462,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     void CallOrRegisterOnCompleteLoadInitWorldPartition_InClient(APalPlayerState::FOnCompleteLoadWorldPartitionDelegate Delegate);
+    
+    UFUNCTION(BlueprintCallable, Client, Reliable)
+    void AddMealLog(const TArray<FPalMealLogDisplayData>& DisplayDataArray);
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void AddItemGetLog_ToClient(const FPalStaticItemIdAndNum& ItemAndNum) const;

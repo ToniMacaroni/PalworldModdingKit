@@ -192,7 +192,8 @@ private:
     int32 LoadoutSelectorIndex;
     
 public:
-    APalWeaponBase();
+    APalWeaponBase(const FObjectInitializer& ObjectInitializer);
+
     UFUNCTION(BlueprintCallable)
     void UnbindGetWeaponDamageDelegate();
     
@@ -400,7 +401,7 @@ public:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
     float CalcAccuracy();
     
-    
+
     // Fix for true pure virtual functions not being implemented
 };
 

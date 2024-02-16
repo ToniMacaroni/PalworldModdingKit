@@ -123,13 +123,6 @@
 /UE4CodeCompletionFolders.txt
 /UE4CodeLitePreProcessor.txt
 
-# Add exceptions for .dlls needed to run built version
-!/Binaries/Win64/*.dll
-!/Binaries/Win64/*.target
-!/Binaries/Win64/*.modules
-!/Plugins/**/Binaries/Win64/*
-*.pdb
-
 
 # Ignore intermediate folders
 Intermediate/
@@ -139,6 +132,9 @@ obj/
 Saved/
 /Engine/Programs/UnrealBuildTool/**
 /LocalBuilds/
+
+# Ignore wwise
+Plugins/Wwise
 
 # Explcitly ignore Mac DS_Store files, regardless of where they are
 .DS_Store

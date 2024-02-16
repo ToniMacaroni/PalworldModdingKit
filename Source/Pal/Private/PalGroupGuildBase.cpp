@@ -1,6 +1,12 @@
 #include "PalGroupGuildBase.h"
 #include "Net/UnrealNetwork.h"
 
+UPalGroupGuildBase::UPalGroupGuildBase() {
+    this->PalStorage = NULL;
+    this->BaseCampLevel = 1;
+    this->bAllPlayerNotOnlineAndAlreadyReset = false;
+}
+
 EPalGroupOperationResult UPalGroupGuildBase::RequestDismantleBaseCamp(const FGuid& BaseCampId) {
     return EPalGroupOperationResult::Success;
 }
@@ -9,6 +15,9 @@ void UPalGroupGuildBase::OnRep_Guildname() {
 }
 
 void UPalGroupGuildBase::OnRep_BaseCampLevel(int32 OldValue) {
+}
+
+void UPalGroupGuildBase::OnReceivedWordFilteringResult(const FString& ResponseBody, bool bResponseOK, int32 ResponseCode) {
 }
 
 void UPalGroupGuildBase::OnDeletePlayerAccount_ServerInternal(UPalPlayerAccount* DeleteAccount) {
@@ -34,9 +43,4 @@ void UPalGroupGuildBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
     DOREPLIFETIME(UPalGroupGuildBase, GuildName);
 }
 
-UPalGroupGuildBase::UPalGroupGuildBase() {
-    this->PalStorage = NULL;
-    this->BaseCampLevel = 1;
-    this->bAllPlayerNotOnlineAndAlreadyReset = false;
-}
 
